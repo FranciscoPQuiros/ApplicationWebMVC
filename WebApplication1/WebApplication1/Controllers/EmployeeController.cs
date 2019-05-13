@@ -38,10 +38,10 @@ namespace WebApplication1.Controllers
         }
 
         [Authorize]
+        [HeaderFooterFilter]
         public ActionResult Index()
         {
             EmployeeListViewModel employeeListViewModel = new EmployeeListViewModel();
-            employeeListViewModel.UserName = User.Identity.Name;
 
             EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
             List<Employee> employees = empBal.GetEmployees();
@@ -66,26 +66,22 @@ namespace WebApplication1.Controllers
             }
             employeeListViewModel.Employees = empViewModels;
 
-            employeeListViewModel.FooterData = new FooterViewModel();
-            employeeListViewModel.FooterData.CompanyName = "StepBystepSchools";
-            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
+            
 
             return View("Index",employeeListViewModel);
         }
 
         [AdminFilter]
+        [HeaderFooterFilter]
         public ActionResult AddNew()
         {
             CreateEmployeeViewModel employeeViewModel = new CreateEmployeeViewModel();
-            employeeViewModel.FooterData = new FooterViewModel();
-            employeeViewModel.FooterData.CompanyName = "StepByStepSchools";
-            employeeViewModel.FooterData.Year = DateTime.Now.Year.ToString();
-            employeeViewModel.UserName = User.Identity.Name;
 
             return View("CreateEmployee", employeeViewModel);
         }
 
         [AdminFilter]
+        [HeaderFooterFilter]
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
         {
             switch (BtnSubmit)
@@ -110,11 +106,7 @@ namespace WebApplication1.Controllers
                         {
                             vm.Salary = ModelState["Salary"].Value.AttemptedValue;
                         }
-                        vm.FooterData = new FooterViewModel();
-                        vm.FooterData.CompanyName = "StepByStepSchools";
-                        vm.FooterData.Year = DateTime.Now.Year.ToString();
-                        vm.UserName = User.Identity.Name;
-
+                       
                         return View("CreateEmployee", vm);
                         
                     }
