@@ -1,7 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@model HandleErrorInfo
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width" />
     <title>Error</title>
 </head>
@@ -10,5 +14,8 @@
         <h1>Error.</h1>
         <h2>Error al procesar la solicitud.</h2>
     </hgroup>
+        Error Message :@Model.Exception.Message<br />
+        Controller: @Model.ControllerName<br />
+        Action: @Model.ActionName
 </body>
 </html>

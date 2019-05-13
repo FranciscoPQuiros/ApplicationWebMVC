@@ -23,6 +23,7 @@ namespace WebApplication1.Controllers
         }
 
         [AdminFilter]
+        [HandleError]
         public async Task<ActionResult> Upload(FileUploadViewModel model)
         {
             int t1 = Thread.CurrentThread.ManagedThreadId;
@@ -34,6 +35,7 @@ namespace WebApplication1.Controllers
             bal.UploadEmployees(employees);
             return RedirectToAction("Index", "Employee");
         }
+
 
         private List<Employee> GetEmployees(FileUploadViewModel model)
         {
