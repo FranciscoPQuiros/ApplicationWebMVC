@@ -76,7 +76,13 @@ namespace WebApplication1.Controllers
         [AdminFilter]
         public ActionResult AddNew()
         {
-            return View("CreateEmployee", new CreateEmployeeViewModel());
+            CreateEmployeeViewModel employeeViewModel = new CreateEmployeeViewModel();
+            employeeViewModel.FooterData = new FooterViewModel();
+            employeeViewModel.FooterData.CompanyName = "StepByStepSchools";
+            employeeViewModel.FooterData.Year = DateTime.Now.Year.ToString();
+            employeeViewModel.UserName = User.Identity.Name;
+
+            return View("CreateEmployee", employeeViewModel);
         }
 
         [AdminFilter]
@@ -104,6 +110,11 @@ namespace WebApplication1.Controllers
                         {
                             vm.Salary = ModelState["Salary"].Value.AttemptedValue;
                         }
+                        vm.FooterData = new FooterViewModel();
+                        vm.FooterData.CompanyName = "StepByStepSchools";
+                        vm.FooterData.Year = DateTime.Now.Year.ToString();
+                        vm.UserName = User.Identity.Name;
+
                         return View("CreateEmployee", vm);
                         
                     }

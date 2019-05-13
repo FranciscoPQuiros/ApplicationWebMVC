@@ -2,15 +2,14 @@
 @model CreateEmployeeViewModel
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 
-<!DOCTYPE html>
+@section TitleSection {
+    CreateEmployee    
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>CreateEmployee</title>
+@section HeaderSection{
     <script>
         function ResetForm() {
             document.getElementById('TxtFName').value = "";
@@ -19,8 +18,9 @@
         }
     </script>
     <script src="~/Scripts/Validations.js"></script>
-</head>
-<body>
+}
+
+@section ContentBody{
     <div>
         <form action="/Employee/SaveEmployee" method="post">
             <table>
@@ -75,5 +75,4 @@
             </table>
         </form>
     </div>
-</body>
-</html>
+}
