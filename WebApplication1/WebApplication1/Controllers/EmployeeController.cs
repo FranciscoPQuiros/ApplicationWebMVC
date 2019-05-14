@@ -39,6 +39,7 @@ namespace WebApplication1.Controllers
 
         [Authorize]
         [HeaderFooterFilter]
+        [Route("Employee/List")]
         public ActionResult Index()
         {
             EmployeeListViewModel employeeListViewModel = new EmployeeListViewModel();
